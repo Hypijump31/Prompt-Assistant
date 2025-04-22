@@ -27,6 +27,8 @@ jobs:
           cd next-app
           npm run build
           npm run export
+      - name: List out directory
+        run: ls -l next-app/out
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
