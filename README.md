@@ -1,40 +1,134 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Prompt Builder IA
 
-## Getting Started
+![Prompt Builder Banner](https://user-images.githubusercontent.com/placeholder/banner-prompt-builder.png)
 
-First, run the development server:
+> Un assistant moderne pour créer, structurer et sauvegarder vos prompts IA, avec une interface responsive, élégante et ultra-rapide.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## Fonctionnalités principales
+
+- **Génération de prompts structurés** pour IA (GPT, Claude, etc.)
+- **Formulaire dynamique** : ajoutez, éditez, réinitialisez vos champs facilement
+- **Copie en un clic** du prompt généré
+- **Sauvegarde locale** des champs (cookie)
+- **Responsive Design** : expérience fluide sur mobile, tablette et desktop
+- **Design moderne** avec Bootstrap 5, icônes, et Google Fonts
+- **Internationalisation prête** (structure compatible avec next-i18next)
+- **Thème clair/sombre** (WIP)
+- **Tests unitaires** avec Jest & React Testing Library
+
+---
+
+## Aperçu
+
+![Aperçu Prompt Builder](https://user-images.githubusercontent.com/placeholder/preview-prompt-builder.png)
+
+---
+
+## Démarrage rapide
+
+1. **Clonez le repo**
+   ```bash
+   git clone https://github.com/votre-utilisateur/prompt-builder.git
+   cd prompt-builder/next-app
+   ```
+2. **Installez les dépendances**
+   ```bash
+   npm install
+   ```
+3. **Lancez le serveur de dev**
+   ```bash
+   npm run dev
+   ```
+   Rendez-vous sur [http://localhost:3000](http://localhost:3000)
+
+---
+
+## Stack technique
+
+- [Next.js](https://nextjs.org/) + TypeScript
+- [Bootstrap 5](https://getbootstrap.com/) & [Bootstrap Icons](https://icons.getbootstrap.com/)
+- [Google Fonts](https://fonts.google.com/)
+- [Tailwind CSS](https://tailwindcss.com/) (pour la base de styles)
+- [Lucide Icons](https://lucide.dev/)
+- [next-i18next](https://github.com/i18next/next-i18next) (optionnel, pour l'i18n)
+- [Jest](https://jestjs.io/) & [React Testing Library](https://testing-library.com/)
+
+---
+
+## Internationalisation (i18n)
+
+Le projet est prêt à accueillir plusieurs langues grâce à `next-i18next`. Ajoutez vos fichiers de traduction dans `/public/locales/`.
+
+---
+
+## Arborescence simplifiée
+
+```
+next-app/
+├── public/              # Statics, images, icônes
+├── src/
+│   ├── components/      # Composants React réutilisables
+│   ├── lib/             # Fonctions utilitaires
+│   ├── pages/           # Pages Next.js (dont index.tsx)
+│   └── styles/          # Feuilles de style globales
+├── package.json         # Dépendances et scripts
+├── next.config.ts       # Configuration Next.js
+└── ...
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Philosophie & bonnes pratiques
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- Raisonnement étape par étape (voir guide GPT dans le code)
+- Feedback utilisateur clair et immédiat
+- Code typé, composants réutilisables, UI moderne
+- Tests unitaires pour chaque composant clé
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Scripts utiles
 
-## Learn More
+- `npm run dev` – Lancer le serveur de développement
+- `npm run build` – Build de production
+- `npm run start` – Lancer le serveur en mode production
+- `npm run lint` – Analyse statique du code
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+## Tests
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Lancez tous les tests unitaires avec :
+```bash
+npm test
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contribution
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+1. Forkez le repo
+2. Créez une branche (`feature/ma-feature`)
+3. Commitez vos modifications
+4. Ouvrez une Pull Request
+
+Merci pour vos contributions !
+
+---
+
+## Licence
+
+Ce projet est open-source sous licence MIT.
+
+---
+
+## Remerciements
+
+- [shadcn/ui](https://ui.shadcn.com/) pour l’inspiration UI
+- [Bootstrap](https://getbootstrap.com/), [Lucide](https://lucide.dev/), et la communauté open-source
+
+---
+
+> _Pour toute question ou suggestion, ouvrez une issue sur GitHub !_
