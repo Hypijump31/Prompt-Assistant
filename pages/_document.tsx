@@ -4,10 +4,7 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        {/* Favicon for all platforms */}
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        {/* Optionally, fallback to .ico */}
-        <link rel="icon" href="/favicon.ico" />
+        {/* Les liens favicon sont désormais gérés dans _app.tsx pour supporter le basePath dynamique */}
       </Head>
       <body>
         <Main />
