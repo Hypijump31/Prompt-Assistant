@@ -9,11 +9,9 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { GetStaticPropsContext } from 'next';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 export default function Home() {
   const { t } = useTranslation('common');
-  const router = useRouter();
 
   const initialFields = useMemo(() => [
     { label: t('objectif'), placeholder: t('objectif_placeholder'), required: true, help: t('objectif_help') },
@@ -49,7 +47,7 @@ export default function Home() {
   // Met à jour les labels/placeholders si la langue change
   useEffect(() => {
     setFields(fields => fields.map((f, i) => ({ ...initialFields[i], value: f.value })));
-  }, [initialFields]);
+  }, [initialFields, fields]);
 
   const handleChange = (idx: number, value: string) => {
     setFields(fields => fields.map((f, i) => i === idx ? { ...f, value } : f));
