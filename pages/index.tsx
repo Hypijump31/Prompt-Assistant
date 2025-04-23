@@ -96,19 +96,23 @@ export default function Home() {
     }, '');
   }
 
-  // Bootstrap tooltip activation
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    const tooltipInstances: any[] = [];
+    const tooltipInstances: Array<{ dispose: () => void }> = [];
     if (typeof window !== 'undefined') {
       (async () => {
         window.bootstrap = window.bootstrap || (await import('bootstrap/dist/js/bootstrap.bundle.min.js')).default;
         document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((el) => {
-          if ((el as any)._tooltip) (el as any)._tooltip.dispose();
+          // Bootstrap adds _tooltip at runtime, not typed in HTMLElement
+          const elWithTooltip = el as unknown as { _tooltip?: { dispose: () => void } };
+          if (elWithTooltip._tooltip) {
+            elWithTooltip._tooltip.dispose();
+          }
         });
         const tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
         tooltipTriggerList.forEach((tooltipTriggerEl) => {
-          if (window.bootstrap && typeof (window.bootstrap as any).Tooltip === 'function') {
-            const instance = new (window.bootstrap as any).Tooltip(tooltipTriggerEl, { trigger: 'focus click hover' });
+          if (window.bootstrap && typeof (window.bootstrap as { Tooltip: new (el: Element, opts: any) => { dispose: () => void } }).Tooltip === 'function') {
+            const instance = new (window.bootstrap as { Tooltip: new (el: Element, opts: any) => { dispose: () => void } }).Tooltip(tooltipTriggerEl, { trigger: 'focus click hover' });
             tooltipInstances.push(instance);
           }
         });
