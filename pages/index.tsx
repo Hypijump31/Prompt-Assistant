@@ -9,12 +9,9 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { GetStaticPropsContext } from 'next';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 export default function Home() {
   const { t } = useTranslation('common');
-  const router = useRouter();
-  const isProd = process.env.NODE_ENV === 'production';
 
   const initialFields = useMemo(() => [
     { label: t('objectif'), placeholder: t('objectif_placeholder'), required: true, help: t('objectif_help') },
