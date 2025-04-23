@@ -98,16 +98,13 @@ export default function Home() {
 
   // Bootstrap tooltip activation
   useEffect(() => {
-    let tooltipInstances: any[] = [];
+    const tooltipInstances: any[] = [];
     if (typeof window !== 'undefined') {
       (async () => {
         window.bootstrap = window.bootstrap || (await import('bootstrap/dist/js/bootstrap.bundle.min.js')).default;
-        // Détruire tous les tooltips existants
         document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((el) => {
-          // @ts-expect-error
-          if (el._tooltip) el._tooltip.dispose();
+          if ((el as any)._tooltip) (el as any)._tooltip.dispose();
         });
-        // Ré-instancier les tooltips avec le texte à jour
         const tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
         tooltipTriggerList.forEach((tooltipTriggerEl) => {
           if (window.bootstrap && typeof (window.bootstrap as any).Tooltip === 'function') {
