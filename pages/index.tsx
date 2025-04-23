@@ -15,8 +15,6 @@ export default function Home() {
   const { t } = useTranslation('common');
   const router = useRouter();
   const isProd = process.env.NODE_ENV === 'production';
-  // Pour Github Pages, on doit préfixer les liens avec basePath
-  const prefix = isProd ? (router?.basePath || '') : '';
 
   const initialFields = useMemo(() => [
     { label: t('objectif'), placeholder: t('objectif_placeholder'), required: true, help: t('objectif_help') },
