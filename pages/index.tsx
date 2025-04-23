@@ -98,29 +98,33 @@ export default function Home() {
 
   // Bootstrap tooltip activation
   useEffect(() => {
+    let tooltipInstances: any[] = [];
     if (typeof window !== 'undefined') {
       (async () => {
         window.bootstrap = window.bootstrap || (await import('bootstrap/dist/js/bootstrap.bundle.min.js')).default;
+        // Détruire tous les tooltips existants
+        document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((el) => {
+          // @ts-expect-error
+          if (el._tooltip) el._tooltip.dispose();
+        });
+        // Ré-instancier les tooltips avec le texte à jour
         const tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
         tooltipTriggerList.forEach((tooltipTriggerEl) => {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           if (window.bootstrap && typeof (window.bootstrap as any).Tooltip === 'function') {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            new (window.bootstrap as any).Tooltip(tooltipTriggerEl, { trigger: 'focus click hover' });
+            const instance = new (window.bootstrap as any).Tooltip(tooltipTriggerEl, { trigger: 'focus click hover' });
+            tooltipInstances.push(instance);
           }
         });
       })();
     }
     return () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      if (window.bootstrap && typeof (window.bootstrap as any).Tooltip === 'function') {
-        document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((el) => {
-          // @ts-expect-error Tooltip is not typed on HTMLElement, but is added by Bootstrap at runtime, so we need to ignore this error.
-          if (el._tooltip) el._tooltip.dispose();
-        });
-      }
+      tooltipInstances.forEach(instance => {
+        if (instance && typeof instance.dispose === 'function') {
+          instance.dispose();
+        }
+      });
     };
-  }, [fields.length]);
+  }, [fields]);
 
   return (
     <main className="d-flex align-items-center justify-content-center min-vh-100 min-vw-100" style={{ overflow: 'hidden' }}>
