@@ -244,12 +244,12 @@ export default function Home() {
               <div className="card-footer bg-white bg-opacity-75 border-0 text-center text-muted small py-3 rounded-bottom-5 d-flex flex-column flex-md-row align-items-center justify-content-center gap-2">
                 <span dangerouslySetInnerHTML={{ __html: t('made_by', { author: 'Hypijump' }) }} />
                 <div className="d-inline-flex align-items-center gap-3 ms-2" style={{minWidth:'60px'}}>
-                  <Link href={`${router.basePath}/fr`} locale="fr" aria-label="Français">
+                  <Link href="/fr" locale="fr" aria-label="Français">
                     <span style={{display:'inline-block',width:'1.6em',verticalAlign:'middle'}}>
                       <svg viewBox="0 0 60 40" width="24" height="16"><rect width="20" height="40" x="0" fill="#0055A4"/><rect width="20" height="40" x="20" fill="#FFF"/><rect width="20" height="40" x="40" fill="#EF4135"/></svg>
                     </span>
                   </Link>
-                  <Link href={`${router.basePath}/en`} locale="en" aria-label="English">
+                  <Link href="/en" locale="en" aria-label="English">
                     <span style={{display:'inline-block',width:'1.6em',verticalAlign:'middle'}}>
                       <svg viewBox="0 0 60 40" width="24" height="16"><rect width="60" height="40" fill="#b22234"/><g fill="#fff"><rect y="3" width="60" height="5"/><rect y="11" width="60" height="5"/><rect y="19" width="60" height="5"/><rect y="27" width="60" height="5"/><rect y="35" width="60" height="5"/></g><rect width="24" height="20" fill="#3c3b6e"/><g fill="#fff"><g id="s18"><g id="s9"><g id="s5"><g id="s4"><polygon id="s" points="2.4,1.6 3,3.1 4.6,3.1 3.3,4.1 3.9,5.6 2.4,4.6 0.9,5.6 1.5,4.1 0.2,3.1 1.8,3.1"/><use xlinkHref="#s" x="4.8"/><use xlinkHref="#s" x="9.6"/><use xlinkHref="#s" x="14.4"/></g><use xlinkHref="#s" x="19.2"/></g><use xlinkHref="#s4" y="4"/></g><use xlinkHref="#s9" y="8"/></g><use xlinkHref="#s18" y="8"/></g></svg>
                     </span>
