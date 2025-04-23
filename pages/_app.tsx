@@ -1,12 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import 'flag-icons/css/flag-icons.min.css';
 import '../src/styles/globals.css';
 import Head from 'next/head';
 import type { AppProps } from 'next/app';
+import { appWithTranslation } from 'next-i18next';
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
@@ -17,3 +19,5 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     </>
   );
 }
+
+export default appWithTranslation(MyApp);
