@@ -9,9 +9,14 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { GetStaticPropsContext } from 'next';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export default function Home() {
   const { t } = useTranslation('common');
+  const router = useRouter();
+  const isProd = process.env.NODE_ENV === 'production';
+  // Pour Github Pages, on doit préfixer les liens avec basePath
+  const prefix = isProd ? (router?.basePath || '') : '';
 
   const initialFields = useMemo(() => [
     { label: t('objectif'), placeholder: t('objectif_placeholder'), required: true, help: t('objectif_help') },
@@ -47,7 +52,7 @@ export default function Home() {
   // Met à jour les labels/placeholders si la langue change
   useEffect(() => {
     setFields(fields => fields.map((f, i) => ({ ...initialFields[i], value: f.value })));
-  }, [initialFields, fields]);
+  }, [initialFields]);
 
   const handleChange = (idx: number, value: string) => {
     setFields(fields => fields.map((f, i) => i === idx ? { ...f, value } : f));
@@ -242,14 +247,14 @@ export default function Home() {
               <div className="card-footer bg-white bg-opacity-75 border-0 text-center text-muted small py-3 rounded-bottom-5 d-flex flex-column flex-md-row align-items-center justify-content-center gap-2">
                 <span dangerouslySetInnerHTML={{ __html: t('made_by', { author: 'Hypijump' }) }} />
                 <div className="d-inline-flex align-items-center gap-3 ms-2" style={{minWidth:'60px'}}>
-                  <Link href="/fr" locale="fr" aria-label="Français">
+                  <Link href={`${prefix}/fr`} locale="fr" aria-label="Français">
                     <span style={{display:'inline-block',width:'1.6em',verticalAlign:'middle'}}>
                       <svg viewBox="0 0 60 40" width="24" height="16"><rect width="20" height="40" x="0" fill="#0055A4"/><rect width="20" height="40" x="20" fill="#FFF"/><rect width="20" height="40" x="40" fill="#EF4135"/></svg>
                     </span>
                   </Link>
-                  <Link href="/en" locale="en" aria-label="English">
+                  <Link href={`${prefix}/en`} locale="en" aria-label="English">
                     <span style={{display:'inline-block',width:'1.6em',verticalAlign:'middle'}}>
-                      <svg viewBox="0 0 60 40" width="24" height="16"><rect width="60" height="40" fill="#b22234"/><g fill="#fff"><rect y="3" width="60" height="5"/><rect y="11" width="60" height="5"/><rect y="19" width="60" height="5"/><rect y="27" width="60" height="5"/><rect y="35" width="60" height="5"/></g><rect width="24" height="20" fill="#3c3b6e"/><g fill="#fff"><g id="s18"><g id="s9"><g id="s5"><g id="s4"><polygon id="s" points="2.4,1.6 3,3.1 4.6,3.1 3.3,4.1 3.9,5.6 2.4,4.6 0.9,5.6 1.5,4.1 0.2,3.1 1.8,3.1"/><use xlinkHref="#s" x="4.8"/><use xlinkHref="#s" x="9.6"/><use xlinkHref="#s" x="14.4"/></g><use xlinkHref="#s" x="19.2"/></g><use xlinkHref="#s4" y="4"/></g><use xlinkHref="#s9" y="8"/></g><use xlinkHref="#s18" y="8"/></g></svg>
+                      <svg viewBox="0 0 60 40" width="24" height="16"><rect width="60" height="40" fill="#012169"/><polygon points="0,0 60,40 60,0 0,40" fill="#FFF"/><polygon points="0,0 60,40 25,40 0,15" fill="#C8102E"/><polygon points="60,0 0,40 35,40 60,15" fill="#C8102E"/><rect x="25" width="10" height="40" fill="#FFF"/><rect y="15" width="60" height="10" fill="#FFF"/><rect x="27" width="6" height="40" fill="#C8102E"/><rect y="17" width="60" height="6" fill="#C8102E"/></svg>
                     </span>
                   </Link>
                 </div>
