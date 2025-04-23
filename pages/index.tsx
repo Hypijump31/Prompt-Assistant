@@ -16,7 +16,6 @@ export default function Home() {
   const router = useRouter();
   const isProd = process.env.NODE_ENV === 'production';
   const prefix = isProd ? (router?.basePath || '') : '';
-  const basePath = prefix;
 
   const initialFields = useMemo(() => [
     { label: t('objectif'), placeholder: t('objectif_placeholder'), required: true, help: t('objectif_help') },
