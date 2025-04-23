@@ -19,18 +19,15 @@ jobs:
         with:
           node-version: '20'
       - name: Install dependencies
-        run: |
-          cd next-app
-          npm ci
+        run: npm ci
       - name: Build static export
         run: |
-          cd next-app
           npm run build
           npm run export
       - name: List out directory
-        run: ls -l next-app/out
+        run: ls -l out
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./next-app/out
+          publish_dir: ./out
