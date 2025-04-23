@@ -96,7 +96,6 @@ export default function Home() {
     }, '');
   }
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const tooltipInstances: Array<{ dispose: () => void }> = [];
     if (typeof window !== 'undefined') {
@@ -111,8 +110,14 @@ export default function Home() {
         });
         const tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
         tooltipTriggerList.forEach((tooltipTriggerEl) => {
-          if (window.bootstrap && typeof (window.bootstrap as { Tooltip: new (el: Element, opts: any) => { dispose: () => void } }).Tooltip === 'function') {
-            const instance = new (window.bootstrap as { Tooltip: new (el: Element, opts: any) => { dispose: () => void } }).Tooltip(tooltipTriggerEl, { trigger: 'focus click hover' });
+          if (
+            window.bootstrap &&
+            typeof (window.bootstrap as { Tooltip: new (el: Element, opts: { [key: string]: unknown }) => { dispose: () => void } }).Tooltip === 'function'
+          ) {
+            const instance = new (window.bootstrap as { Tooltip: new (el: Element, opts: { [key: string]: unknown }) => { dispose: () => void } }).Tooltip(
+              tooltipTriggerEl,
+              { trigger: 'focus click hover' }
+            );
             tooltipInstances.push(instance);
           }
         });
