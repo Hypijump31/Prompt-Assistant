@@ -49,10 +49,6 @@ export default function Home() {
     } catch {}
   }, []);
 
-  const requiredCount = fields.filter(f => f.required).length;
-  const completedCount = fields.filter(f => f.required && f.value.trim()).length;
-  const allFilled = completedCount === requiredCount;
-
   const handleChange = (idx: number, value: string) => {
     setFields(fields => fields.map((f, i) => i === idx ? { ...f, value } : f));
   };
@@ -80,21 +76,24 @@ export default function Home() {
 
   // Bootstrap tooltip activation
   useEffect(() => {
-    let bs;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let bs: any;
     if (typeof window !== 'undefined') {
-      // @ts-ignore
-      bs = window.bootstrap || (window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle.min.js'));
-      const tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-      tooltipTriggerList.forEach((tooltipTriggerEl) => {
-        // @ts-ignore
-        new window.bootstrap.Tooltip(tooltipTriggerEl, { trigger: 'focus click hover' });
-      });
+      (async () => {
+        // @ts-expect-error: window.bootstrap is not typed, but required for Bootstrap tooltips
+        bs = window.bootstrap || (window.bootstrap = (await import('bootstrap/dist/js/bootstrap.bundle.min.js')).default);
+        const tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.forEach((tooltipTriggerEl) => {
+          // @ts-expect-error: window.bootstrap is not typed, but required for Bootstrap tooltips
+          new window.bootstrap.Tooltip(tooltipTriggerEl, { trigger: 'focus click hover' });
+        });
+      })();
     }
     return () => {
       // Optionally dispose tooltips if needed
       if (bs && bs.Tooltip) {
         document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((el) => {
-          // @ts-ignore
+          // @ts-expect-error: _tooltip is not typed, but required for Bootstrap tooltips
           if (el._tooltip) el._tooltip.dispose();
         });
       }
