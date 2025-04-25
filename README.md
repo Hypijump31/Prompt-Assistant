@@ -1,6 +1,7 @@
+
 # Prompt Builder IA
 
-![Prompt Builder Banner](https://user-images.githubusercontent.com/placeholder/banner-prompt-builder.png)
+https://hypijump31.github.io/Prompt-Assistant
 
 > Un assistant moderne pour créer, structurer et sauvegarder vos prompts IA, avec une interface responsive, élégante et ultra-rapide.
 
